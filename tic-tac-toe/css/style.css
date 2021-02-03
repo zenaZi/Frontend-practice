@@ -1,0 +1,21 @@
+td {
+    width: 150px;
+    height: 200px;
+
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.content {
+    position: absolute;
+    z-index: 9998;
+    top: 150px;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgb(41, 100, 93);
+    transition: opacity .3s ease;
+}
+

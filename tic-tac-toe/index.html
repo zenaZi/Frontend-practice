@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tic-tac-toe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script defer src="js/main.js"></script>
+    <script src="js/vue.js"></script>
+</head>
+<body class="content">
+<div id="field">
+    <div v-if="entering_name">
+        <p  class="font-weight-bold">Укажите размер поля:
+            <br><input v-model="size_field" class="border border-light"></p>
+        <p  class="font-weight-bold">Игрок №1:
+            <br><input v-model="player1" class="border border-light"></p>
+        <p  class="font-weight-bold">Игрок №2:
+            <br><input v-model="player2" class="border border-light">
+            <button :class="{ 'strike': !playing_with_bot }" class="btn btn-secondary btn-lg" @click="bot_game">Игра с компуктером</button>
+        </p>
+        <button  class="btn btn-secondary btn-lg" @click="start_games">
+            Начать игру
+        </button>
+
+    </div>
+
+    <div v-if="start_game">
+        <table cellpadding="5" border="1">
+            <tr v-for="(row,r_index) in field">
+                <td v-for="(col,c_index) in row"
+                    @click="action_game(r_index,c_index)">
+                    {{ col.n }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div v-if="win"><br>
+        <div class="badge badge-primary text-wrap" style="width: 6rem;">
+            ПОБЕДИТЕЛЬ: {{ winner }}
+        </div>
+        <button class="btn btn-outline-warning" @click="restart_game" class="btn btn-outline-warning">
+            Перезапустить
+        </button>
+    </div>
+    <div v-if="draw">
+        НИЧЬЯ
+        <button class="btn btn-outline-warning"  @click="restart_game">
+            Перезапустить
+        </button>
+    </div>
+</div>
+</body>
+</html>
